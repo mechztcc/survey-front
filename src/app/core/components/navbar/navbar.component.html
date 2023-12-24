@@ -1,0 +1,11 @@
+<div class="flex w-full justify-between items-center p-3 px-5 bg-zinc-50" *ngIf="isAuth">
+  <h1 class="text-6xl logo text-purple-400 cursor-pointer" routerLink="/">SJ</h1>
+  <div class="flex items-center">
+    <span class="text-xl cursor-pointer">Enquetes</span>
+    <app-simple-button
+      class="mx-3"
+      [label]="'Entrar'"
+      routerLink="/auth/login"
+    ></app-simple-button>
+  </div>
+</div>

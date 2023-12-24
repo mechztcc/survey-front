@@ -1,0 +1,55 @@
+<form
+  [formGroup]="form"
+  class="h-full w-full flex flex-col justify-center bg-zinc-50 p-5 md:px-20 px-10"
+>
+  <h1 class="text-5xl text-center">
+    Bem vindo ao <b class="text-purple-400"> Survey Jornal</b>
+  </h1>
+  <span class="text-xl text-center">
+    Preencha o formulário abaixo para acessar sua conta.
+  </span>
+
+  <label for="email" class="font-semibold mt-10">E-mail</label>
+  <div class="flex border rounded-full bg-white hover:border-purple-400">
+    <button type="button" class="ml-5" disabled>
+      <fa-icon [icon]="icons.email" class="text-zinc-500"></fa-icon>
+    </button>
+    <input
+      type="text"
+      class="w-full p-3 px-5 rounded-full outline-none"
+      formControlName="email"
+    />
+  </div>
+  <small class="text-red-400 mt-1">E-mail inválido</small>
+
+  <label for="email" class="font-semibold mt-5">Senha</label>
+  <div class="flex border rounded-full bg-white hover:border-purple-400">
+    <input
+      [type]="!isPass ? 'password' : 'text'"
+      class="w-full p-3 px-5 rounded-full outline-none"
+      formControlName="password"
+    />
+    <button type="button" class="mr-5" (click)="onHandlePass()">
+      <fa-icon
+        [icon]="!isPass ? icons.eye : icons.slash"
+        class="text-zinc-500"
+      ></fa-icon>
+    </button>
+  </div>
+
+  <small class="text-red-400 mt-1">Senha inválida</small>
+
+  <app-simple-button
+    routerLink="/"
+    [label]="'ENTRAR'"
+    [full]="true"
+    class="mt-10"
+  ></app-simple-button>
+
+  <span class="text-center text-xl mt-5"
+    >Não possui uma conta?
+    <b class="text-purple-400 cursor-pointer" routerLink="/auth/create-account"
+      >Registrar</b
+    ></span
+  >
+</form>

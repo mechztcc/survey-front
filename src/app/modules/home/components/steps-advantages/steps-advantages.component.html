@@ -1,0 +1,14 @@
+<div class="flex my-5">
+  <button
+    [@fade]
+    *ngFor="let step of steps"
+    (click)="onChange(step)"
+    [ngClass]="{
+      'bg-purple-400 shadow-lg shadow-purple-200 text-white':
+        stepsService.selected === step
+    }"
+    class="h-14 w-14 p-3 rounded-full font-semibold text-xl border mx-5"
+  >
+    {{ step + 1 }}
+  </button>
+</div>

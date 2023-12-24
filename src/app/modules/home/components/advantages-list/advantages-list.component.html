@@ -1,0 +1,14 @@
+<div class="bg-white py-5">
+  <div class="flex flex-col items-center">
+    <h1 class="text-4xl font-bold text-center mb-5">
+      Vantagens em usar o <b class="text-purple-400">Survey Jornal</b>
+    </h1>
+    <app-steps-advantages></app-steps-advantages>
+  </div>
+
+  <div class="mb-10">
+    <app-advantage-card
+      [information]="steps.advantages[steps.selected]"
+    ></app-advantage-card>
+  </div>
+</div>
