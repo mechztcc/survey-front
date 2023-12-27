@@ -73,12 +73,14 @@ export class FormLoginComponent implements OnInit {
     this.authService
       .onCreateSession(payload)
       .subscribe((data) => {
-        
+        // WHY NOT COOKIES?
+        const { token } = data.user;
+        localStorage.setItem('token', token);
+
         this.alertService.onSuccess('Login realizado com sucesso!');
-        console.log(this.alertService);
-        // this.timer$ = timer(3000).subscribe(() => {
-        //   this.router.navigate(['/']);
-        // });
+        this.timer$ = timer(3000).subscribe(() => {
+          this.router.navigate(['/']);
+        });
       })
       .add(() => {
         this.isLoading = false;

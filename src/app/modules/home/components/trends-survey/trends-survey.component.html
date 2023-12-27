@@ -14,13 +14,8 @@
 </div>
 
 <div class="grid grid-cols-1 md:grid-cols-3 md:mx-20 mx-5 gap-5">
-  <div class="col-span-1 md:col-span-1 md:mt-10 mt-5">
-    <app-card-survey></app-card-survey>
+  <div class="col-span-1 md:col-span-1 md:mt-10 mt-5" *ngFor="let survey of trending">
+    <app-card-survey [survey]="survey"></app-card-survey>
   </div>
-  <div class="col-span-1 md:col-span-1 md:mt-10 mt-5">
-    <app-card-survey></app-card-survey>
-  </div>
-  <div class="col-span-1 md:col-span-1 md:mt-10 mt-5">
-    <app-card-survey></app-card-survey>
-  </div>
+
 </div>

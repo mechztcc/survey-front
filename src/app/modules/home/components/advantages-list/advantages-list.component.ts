@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AdvantageListStepsService } from '../../shared/services/advantage-list-steps.service';
+import { AdvantageListStepsService } from '../../shared/services/advantage-list-steps/advantage-list-steps.service';
 
 @Component({
   selector: 'app-advantages-list',

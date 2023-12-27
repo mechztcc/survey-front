@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IAdvantageCardInformation } from '../types/advantage.interface';
+import { IAdvantageCardInformation } from '../../types/advantage.interface';
 
 @Injectable({
   providedIn: 'root',

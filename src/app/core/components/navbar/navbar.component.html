@@ -1,11 +1,24 @@
-<div class="flex w-full justify-between items-center p-3 px-5 bg-zinc-50" *ngIf="isAuth">
-  <h1 class="text-6xl logo text-purple-400 cursor-pointer" routerLink="/">SJ</h1>
+<div
+  class="flex w-full justify-between items-center p-3 px-5 bg-zinc-50"
+  *ngIf="isAuth"
+>
+  <h1 class="text-6xl logo text-purple-400 cursor-pointer" routerLink="/">
+    SJ
+  </h1>
   <div class="flex items-center">
-    <span class="text-xl cursor-pointer">Enquetes</span>
+    <span class="text-xl cursor-pointer hover:text-purple-400" routerLink="/search">Enquetes</span>
+    <span
+      class="text-xl cursor-pointer mx-5 hover:text-purple-400"
+      routerLink="/auth/login"
+      *ngIf="hasSession"
+    >
+      Sair
+    </span>
     <app-simple-button
       class="mx-3"
       [label]="'Entrar'"
       routerLink="/auth/login"
+      *ngIf="!hasSession"
     ></app-simple-button>
   </div>
 </div>

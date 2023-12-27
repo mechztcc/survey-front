@@ -14,4 +14,8 @@ export class NavbarComponent {
   get isAuth() {
     return !window.location.href.includes('auth');
   }
+
+  get hasSession() {
+    return localStorage.getItem('token');
+  }
 }
