@@ -13,7 +13,7 @@ import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 export class SimpleButtonComponent {
   @Input() label: string;
   @Input() full: boolean = false;
-  @Input() type: 'submit' | 'button';
+  @Input() type: 'submit' | 'button' = 'button';
   @Input() loading: boolean = false;
 
   icons = {

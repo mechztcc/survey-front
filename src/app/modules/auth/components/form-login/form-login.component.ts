@@ -7,8 +7,9 @@ import {
   faEyeSlash,
 } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from '../../shared/services/auth.service';
-import { FormsValidatorService } from 'src/app/core/services/forms-validator.service';
+import { FormsValidatorService } from 'src/app/core/services/forms-validator/forms-validator.service';
 import { Subscription, timer } from 'rxjs';
+import { AlertService } from 'src/app/core/services/alert-service/alert.service';
 
 @Component({
   selector: 'app-form-login',
@@ -35,7 +36,8 @@ export class FormLoginComponent implements OnInit {
     private fb: FormBuilder,
     public formsValidator: FormsValidatorService,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private alertService: AlertService
   ) {}
 
   ngOnInit(): void {
@@ -71,9 +73,12 @@ export class FormLoginComponent implements OnInit {
     this.authService
       .onCreateSession(payload)
       .subscribe((data) => {
-        this.timer$ = timer(3000).subscribe(() => {
-          this.router.navigate(['/']);
-        });
+        
+        this.alertService.onSuccess('Login realizado com sucesso!');
+        console.log(this.alertService);
+        // this.timer$ = timer(3000).subscribe(() => {
+        //   this.router.navigate(['/']);
+        // });
       })
       .add(() => {
         this.isLoading = false;

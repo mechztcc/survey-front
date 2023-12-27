@@ -9,10 +9,11 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, catchError, map, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { AlertService } from '../services/alert-service/alert.service';
 
 @Injectable()
 export class HttpHandlerInterceptor implements HttpInterceptor {
-  constructor(private router: Router) {}
+  constructor(private router: Router, private alertService: AlertService) {}
 
   intercept(
     request: HttpRequest<unknown>,
@@ -28,6 +29,9 @@ export class HttpHandlerInterceptor implements HttpInterceptor {
       }),
       catchError((response: HttpErrorResponse) => {
         scrollTo(0, 0);
+        console.log(response.error);
+        
+        this.alertService.onError(response.error['message'] ?? 'Falha na operação')
         return throwError(() => new Error());
       })
     );

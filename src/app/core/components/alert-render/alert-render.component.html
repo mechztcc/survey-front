@@ -1,0 +1,37 @@
+<div
+  *ngIf="!alertService.isHiden"
+  (click)="alertService.onCloseFromView($event)"
+  class="fixed top-0 min-h-screen min-w-screen right-0 left-0 frame flex justify-center items-center"
+>
+  <div
+    class="bg-zinc-50 p-7 md:w-1/3 w-full rounded-lg"
+    *ngIf="alertService.type == 'success'"
+  >
+    <div class="flex justify-between items-center mb-2">
+      <h1 class="text-3xl text-green-400 font-semibold">
+        <fa-icon [icon]="icons.success"></fa-icon>
+        {{ alertService.title }}
+      </h1>
+      <button class="border rounded-lg py-2 px-3" type="button" (click)="alertService.onClose()">
+        <fa-icon [icon]="icons.close"></fa-icon>
+      </button>
+    </div>
+    <span class="text-xl mb-5">{{ alertService.description }}</span>
+  </div>
+
+  <div
+    class="bg-zinc-50 p-7 md:w-1/3 w-full rounded-lg"
+    *ngIf="alertService.type == 'error'"
+  >
+    <div class="flex justify-between items-center mb-2">
+      <h1 class="text-3xl text-red-400 font-semibold">
+        <fa-icon [icon]="icons.error"></fa-icon>
+        {{ alertService.title }}
+      </h1>
+      <button class="border rounded-lg py-2 px-3">
+        <fa-icon [icon]="icons.close"></fa-icon>
+      </button>
+    </div>
+    <span class="text-xl mb-5">{{ alertService.description }}</span>
+  </div>
+</div>

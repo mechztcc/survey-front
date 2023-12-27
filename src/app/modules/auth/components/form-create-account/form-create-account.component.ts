@@ -8,7 +8,7 @@ import {
   faUser,
 } from '@fortawesome/free-solid-svg-icons';
 import { Subscription, timer } from 'rxjs';
-import { FormsValidatorService } from 'src/app/core/services/forms-validator.service';
+import { FormsValidatorService } from 'src/app/core/services/forms-validator/forms-validator.service';
 import { AuthService } from '../../shared/services/auth.service';
 
 @Component({

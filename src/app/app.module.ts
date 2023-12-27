@@ -11,6 +11,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { BadgeComponent } from './core/components/badge/badge.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HttpHandlerInterceptor } from './core/interceptors/http-handler.interceptor';
+import { AlertRenderComponent } from './core/components/alert-render/alert-render.component';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,6 +25,7 @@ import { HttpHandlerInterceptor } from './core/interceptors/http-handler.interce
     FontAwesomeModule,
     BadgeComponent,
     HttpClientModule,
+    AlertRenderComponent,
   ],
   providers: [
     {
