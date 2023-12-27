@@ -3,7 +3,12 @@ import { faClock, faQuestionCircle } from '@fortawesome/free-regular-svg-icons';
 import { ISurvey } from '../../shared/types/survey.interface';
 import * as moment from 'moment';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { faEye, faEyeSlash, faSlash } from '@fortawesome/free-solid-svg-icons';
+import {
+  faCircleNotch,
+  faEye,
+  faEyeSlash,
+  faSlash,
+} from '@fortawesome/free-solid-svg-icons';
 import { SurveyService } from '../../shared/services/survey/survey.service';
 import { ISurveyInformation } from '../../shared/types/survey-information.interface';
 
@@ -19,6 +24,7 @@ export class CardSurveyComponent implements OnInit {
     clock: faClock,
     eye: faEye,
     slash: faEyeSlash,
+    load: faCircleNotch,
   };
 
   form: FormGroup;
