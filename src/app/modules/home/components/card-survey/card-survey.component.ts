@@ -4,6 +4,8 @@ import { ISurvey } from '../../shared/types/survey.interface';
 import * as moment from 'moment';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { faEye, faEyeSlash, faSlash } from '@fortawesome/free-solid-svg-icons';
+import { SurveyService } from '../../shared/services/survey/survey.service';
+import { ISurveyInformation } from '../../shared/types/survey-information.interface';
 
 @Component({
   selector: 'app-card-survey',
@@ -23,10 +25,28 @@ export class CardSurveyComponent implements OnInit {
   get formControls() {
     return this.form.controls;
   }
+  get isCheked() {
+    return (
+      this.formControls['value'].value == 'yes' ||
+      this.formControls['value'].value == 'no'
+    );
+  }
+
+  get remainingTime() {
+    const end = moment(new Date(this.survey.expires_at));
+    const now = moment(new Date());
+    const hours = end.diff(now, 'hours');
+    const min = end.diff(now, 'minutes');
+
+    return `${hours}hrs e ${min}`;
+  }
 
   isResult: boolean = false;
+  isLoading: boolean = false;
 
-  constructor(private fb: FormBuilder) {}
+  information: ISurveyInformation;
+
+  constructor(private fb: FormBuilder, private surveyService: SurveyService) {}
 
   ngOnInit(): void {
     this.initForm();
@@ -46,23 +66,17 @@ export class CardSurveyComponent implements OnInit {
   }
 
   onHandleResult() {
-    this.isResult = !this.isResult;
-  }
-
-  get isCheked() {
-    return (
-      this.formControls['value'].value == 'yes' ||
-      this.formControls['value'].value == 'no'
-    );
-  }
-
-  get remainingTime() {
-    const end = moment(new Date(this.survey.expires_at));
-    const now = moment(new Date());
-
-    const hours = end.diff(now, 'hours');
-    const min = end.diff(now, 'minutes');
-
-    return `${hours}hrs e ${min}`;
+    this.isLoading = true;
+    this.surveyService
+      .onInfo(this.survey.id)
+      .subscribe((data) => {
+        this.information = data;
+        data.yesPercentage = `${parseFloat(data.yesPercentage).toFixed(0)}%`;
+        data.noPercentage = `${parseFloat(data.noPercentage).toFixed(0)}%`;
+        this.isResult = !this.isResult;
+      })
+      .add(() => {
+        this.isLoading = false;
+      });
   }
 }
