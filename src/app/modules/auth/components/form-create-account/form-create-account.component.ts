@@ -1,16 +1,15 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import {
   faEnvelope,
   faEye,
   faEyeSlash,
   faUser,
 } from '@fortawesome/free-solid-svg-icons';
+import { Subscription, timer } from 'rxjs';
 import { FormsValidatorService } from 'src/app/core/services/forms-validator.service';
 import { AuthService } from '../../shared/services/auth.service';
-import { Router } from '@angular/router';
-import { Observable, Subscription, throwError, timeout, timer } from 'rxjs';
-import { asapScheduler, asyncScheduler } from 'rxjs';
 
 @Component({
   selector: 'app-form-create-account',
@@ -45,9 +44,7 @@ export class FormCreateAccountComponent implements OnInit, OnDestroy {
     this.initForm();
   }
 
-  ngOnDestroy(): void {
-    this.timer$.unsubscribe();
-  }
+  ngOnDestroy(): void {}
 
   onHandlePass() {
     this.isPass = !this.isPass;

@@ -1,10 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import {
   faEnvelope,
   faEye,
   faEyeSlash,
 } from '@fortawesome/free-solid-svg-icons';
+import { AuthService } from '../../shared/services/auth.service';
+import { FormsValidatorService } from 'src/app/core/services/forms-validator.service';
+import { Subscription, timer } from 'rxjs';
 
 @Component({
   selector: 'app-form-login',
@@ -19,10 +23,20 @@ export class FormLoginComponent implements OnInit {
   };
 
   isPass: boolean = false;
+  isLoading: boolean = false;
+  timer$: Subscription;
 
   form: FormGroup;
+  get formControls() {
+    return this.form.controls;
+  }
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    public formsValidator: FormsValidatorService,
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.initForm();
@@ -40,5 +54,35 @@ export class FormLoginComponent implements OnInit {
         Validators.compose([Validators.required, Validators.minLength(6)]),
       ],
     });
+  }
+
+  onSubmit() {
+    if (this.form.invalid) {
+      return;
+    }
+
+    this.isLoading = true;
+
+    const payload = {
+      email: this.formControls['email'].value,
+      password: this.formControls['password'].value,
+    };
+
+    this.authService
+      .onCreateSession(payload)
+      .subscribe((data) => {
+        this.timer$ = timer(3000).subscribe(() => {
+          this.router.navigate(['/']);
+        });
+      })
+      .add(() => {
+        this.isLoading = false;
+      });
+  }
+
+  hasError(field: string) {
+    return this.formsValidator.fieldIsInvalidWithError(
+      this.formControls[field]
+    );
   }
 }

@@ -1,5 +1,6 @@
 <form
   [formGroup]="form"
+  (ngSubmit)="onSubmit()"
   class="h-full w-full flex flex-col justify-center bg-zinc-50 p-5 md:px-20 px-10"
 >
   <h1 class="text-5xl text-center">
@@ -10,7 +11,10 @@
   </span>
 
   <label for="email" class="font-semibold mt-10">E-mail</label>
-  <div class="flex border rounded-full bg-white hover:border-purple-400">
+  <div
+    class="flex border rounded-full bg-white hover:border-purple-400"
+    [class.border-red-400]="hasError('email')"
+  >
     <button type="button" class="ml-5" disabled>
       <fa-icon [icon]="icons.email" class="text-zinc-500"></fa-icon>
     </button>
@@ -20,7 +24,9 @@
       formControlName="email"
     />
   </div>
-  <small class="text-red-400 mt-1">E-mail inválido</small>
+  <small class="text-red-400 mt-1" *ngIf="hasError('email')">
+    E-mail inválido
+  </small>
 
   <label for="email" class="font-semibold mt-5">Senha</label>
   <div class="flex border rounded-full bg-white hover:border-purple-400">
@@ -37,12 +43,15 @@
     </button>
   </div>
 
-  <small class="text-red-400 mt-1">Senha inválida</small>
+  <small class="text-red-400 mt-1" *ngIf="hasError('password')">
+    Senha inválida
+  </small>
 
   <app-simple-button
-    routerLink="/"
     [label]="'ENTRAR'"
     [full]="true"
+    [type]="'submit'"
+    [loading]="isLoading"
     class="mt-10"
   ></app-simple-button>
 
