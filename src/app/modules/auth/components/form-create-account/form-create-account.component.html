@@ -1,5 +1,6 @@
 <form
   [formGroup]="form"
+  (ngSubmit)="onSubmit()"
   class="h-full w-full flex flex-col justify-center bg-zinc-50 p-5 md:px-20 px-10"
 >
   <h1 class="text-5xl text-center">
@@ -10,20 +11,28 @@
   </span>
 
   <label for="name" class="font-semibold mt-10">Nome</label>
-  <div class="flex border rounded-full bg-white hover:border-purple-400">
+  <div
+    class="flex border rounded-full bg-white hover:border-purple-400"
+    [class.border-red-400]="hasError('name')"
+  >
     <button type="button" class="ml-5" disabled>
       <fa-icon [icon]="icons.person" class="text-zinc-500"></fa-icon>
     </button>
     <input
       type="text"
       class="w-full p-3 px-5 rounded-full outline-none"
-      formControlName="email"
+      formControlName="name"
     />
   </div>
-  <small class="text-red-400 mt-1">E-mail inválido</small>
+  <small class="text-red-400 mt-1" *ngIf="hasError('name')">
+    Nome inválido
+  </small>
 
-  <label for="document" class="font-semibold mt-5">CPF / CNPJ</label>
-  <div class="flex border rounded-full bg-white hover:border-purple-400">
+  <label for="document" class="font-semibold mt-5">CPF</label>
+  <div
+    class="flex border rounded-full bg-white hover:border-purple-400"
+    [class.border-red-400]="hasError('document')"
+  >
     <button type="button" class="ml-5" disabled>
       <fa-icon [icon]="icons.person" class="text-zinc-500"></fa-icon>
     </button>
@@ -31,12 +40,18 @@
       type="text"
       class="w-full p-3 px-5 rounded-full outline-none"
       formControlName="document"
+      mask="000.000.000-00"
     />
   </div>
-  <small class="text-red-400 mt-1">E-mail inválido</small>
+  <small class="text-red-400 mt-1" *ngIf="hasError('document')">
+    Documento inválido
+  </small>
 
   <label for="email" class="font-semibold mt-5">E-mail</label>
-  <div class="flex border rounded-full bg-white hover:border-purple-400">
+  <div
+    class="flex border rounded-full bg-white hover:border-purple-400"
+    [class.border-red-400]="hasError('email')"
+  >
     <button type="button" class="ml-5" disabled>
       <fa-icon [icon]="icons.email" class="text-zinc-500"></fa-icon>
     </button>
@@ -46,10 +61,15 @@
       formControlName="email"
     />
   </div>
-  <small class="text-red-400 mt-1">E-mail inválido</small>
+  <small class="text-red-400 mt-1" *ngIf="hasError('email')">
+    E-mail inválido
+  </small>
 
   <label for="password" class="font-semibold mt-5">Senha</label>
-  <div class="flex border rounded-full bg-white hover:border-purple-400">
+  <div
+    class="flex border rounded-full bg-white hover:border-purple-400"
+    [class.border-red-400]="hasError('password')"
+  >
     <input
       [type]="!isPass ? 'password' : 'text'"
       class="w-full p-3 px-5 rounded-full outline-none"
@@ -63,13 +83,16 @@
     </button>
   </div>
 
-  <small class="text-red-400 mt-1">Senha inválida</small>
+  <small class="text-red-400 mt-1" *ngIf="hasError('password')">
+    Senha inválida
+  </small>
 
   <app-simple-button
-    routerLink="/"
-    [label]="'ENTRAR'"
+    [label]="'CRIAR CONTA'"
     [full]="true"
     class="mt-10"
+    [loading]="isLoading"
+    [type]="'submit'"
   ></app-simple-button>
 
   <span class="text-center text-xl mt-5"

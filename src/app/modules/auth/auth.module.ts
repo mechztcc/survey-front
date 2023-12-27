@@ -9,9 +9,15 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormCreateAccountComponent } from './components/form-create-account/form-create-account.component';
 import { CreateAccountPageComponent } from './pages/create-account-page/create-account-page.component';
+import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 
 @NgModule({
-  declarations: [LoginPageComponent, FormLoginComponent, FormCreateAccountComponent, CreateAccountPageComponent],
+  declarations: [
+    LoginPageComponent,
+    FormLoginComponent,
+    FormCreateAccountComponent,
+    CreateAccountPageComponent,
+  ],
   imports: [
     CommonModule,
     AuthRoutingModule,
@@ -19,6 +25,9 @@ import { CreateAccountPageComponent } from './pages/create-account-page/create-a
     FontAwesomeModule,
     ReactiveFormsModule,
     FormsModule,
+    NgxMaskDirective,
+    NgxMaskPipe,
   ],
+  providers: [provideNgxMask()],
 })
 export class AuthModule {}

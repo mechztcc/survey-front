@@ -1,6 +1,16 @@
 <button
+  *ngIf="!loading"
   [class.w-full]="full"
   class="bg-purple-400 hover:bg-purple-500 hover:shadow-lg hover:shadow-purple-300 rounded-full p-3 px-5 text-white font-semibold"
 >
   {{ label }}
+</button>
+
+<button
+  *ngIf="loading"
+  [class.w-full]="full"
+  disabled
+  class="bg-purple-400 rounded-full p-3 px-5 text-white font-semibold"
+>
+  <fa-icon [icon]="icons.load" [size]="'xl'" [spin]="true"></fa-icon>
 </button>

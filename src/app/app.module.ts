@@ -9,6 +9,8 @@ import { SimpleButtonComponent } from './core/components/simple-button/simple-bu
 import { FooterComponent } from './core/components/footer/footer.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { BadgeComponent } from './core/components/badge/badge.component';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HttpHandlerInterceptor } from './core/interceptors/http-handler.interceptor';
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,8 +23,15 @@ import { BadgeComponent } from './core/components/badge/badge.component';
     FooterComponent,
     FontAwesomeModule,
     BadgeComponent,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpHandlerInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
