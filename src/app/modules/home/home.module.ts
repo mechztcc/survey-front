@@ -18,6 +18,7 @@ import { BadgeComponent } from 'src/app/core/components/badge/badge.component';
 import { FilterByVotesComponent } from './components/filter-by-votes/filter-by-votes.component';
 import { FilterByDoneComponent } from './components/filter-by-done/filter-by-done.component';
 import { FilterBySettingsComponent } from './components/filter-by-settings/filter-by-settings.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,8 @@ import { FilterBySettingsComponent } from './components/filter-by-settings/filte
     SimpleButtonComponent,
     FontAwesomeModule,
     BadgeComponent,
+    FormsModule,
+    ReactiveFormsModule,
   ],
 })
 export class HomeModule {}
