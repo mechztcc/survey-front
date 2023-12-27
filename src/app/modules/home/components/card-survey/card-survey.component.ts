@@ -3,6 +3,7 @@ import { faClock, faQuestionCircle } from '@fortawesome/free-regular-svg-icons';
 import { ISurvey } from '../../shared/types/survey.interface';
 import * as moment from 'moment';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { faEye, faEyeSlash, faSlash } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-card-survey',
@@ -14,6 +15,8 @@ export class CardSurveyComponent implements OnInit {
   icons = {
     question: faQuestionCircle,
     clock: faClock,
+    eye: faEye,
+    slash: faEyeSlash,
   };
 
   form: FormGroup;
@@ -21,7 +24,7 @@ export class CardSurveyComponent implements OnInit {
     return this.form.controls;
   }
 
-  
+  isResult: boolean = false;
 
   constructor(private fb: FormBuilder) {}
 
@@ -42,8 +45,15 @@ export class CardSurveyComponent implements OnInit {
     this.formControls['value'].setValue(value);
   }
 
+  onHandleResult() {
+    this.isResult = !this.isResult;
+  }
+
   get isCheked() {
-    return (this.formControls['value'].value == 'yes' || this.formControls['value'].value == 'no');
+    return (
+      this.formControls['value'].value == 'yes' ||
+      this.formControls['value'].value == 'no'
+    );
   }
 
   get remainingTime() {

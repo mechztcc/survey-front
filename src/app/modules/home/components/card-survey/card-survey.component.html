@@ -2,20 +2,37 @@
   <div
     class="flex flex-col rounded-lg bg-zinc-50 p-5 hover:shadow-xl hover:shadow-purple-200 cursor-pointer my-5 mx-1"
   >
-    <h1 class="text-xl font-semibold my-3">
+    <button class="border w-fit p-2 rounded-lg self-end" (click)="onHandleResult()">
+      <fa-icon [icon]="isResult ? icons.eye : icons.slash"></fa-icon>
+    </button>
+    <h1 class="text-xl font-semibold">
       {{ survey.question }}
     </h1>
 
     <div class="flex items-center mt-3">
-      <input type="radio" (click)="onHandleAlternative('yes')" [disabled]="isCheked" />
+      <input
+        type="radio"
+        (click)="onHandleAlternative('yes')"
+        [disabled]="isCheked"
+      />
       <span class="text-xl mx-3">Sim</span>
-      <!-- <div class="rounded-full h-3 bg-green-400 mr-1" style="width: 45%;"></div> 45% -->
+      <ng-container *ngIf="isResult">
+        <div class="rounded-full h-3 bg-green-400 mr-1" style="width: 45%"></div>
+        45%
+      </ng-container>
     </div>
 
     <div class="flex items-center">
-      <input type="radio" (click)="onHandleAlternative('no')" [disabled]="isCheked"/>
+      <input
+        type="radio"
+        (click)="onHandleAlternative('no')"
+        [disabled]="isCheked"
+      />
       <span class="text-xl mx-3">Não</span>
-      <!-- <div class="rounded-full h-3 bg-red-400 mr-1" style="width: 55%;"></div> 55% -->
+      <ng-container *ngIf="isResult">
+        <div class="rounded-full h-3 bg-red-400 mr-1" style="width: 55%"></div>
+        55%
+      </ng-container>
     </div>
 
     <hr class="w-full my-3" />
