@@ -6,7 +6,12 @@
     SJ
   </h1>
   <div class="flex items-center">
-    <span class="text-xl cursor-pointer hover:text-purple-400" routerLink="/search">Enquetes</span>
+    <span
+      class="text-xl cursor-pointer hover:text-purple-400"
+      *ngIf="hasSession"
+      routerLink="/search"
+      >Enquetes</span
+    >
     <span
       class="text-xl cursor-pointer mx-5 hover:text-purple-400"
       routerLink="/auth/login"

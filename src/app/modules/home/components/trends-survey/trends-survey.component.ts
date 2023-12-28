@@ -11,6 +11,10 @@ export class TrendsSurveyComponent implements OnInit {
   isLoading: boolean = false;
   trending: ISurvey[] = [];
 
+  get hasSession() {
+    return localStorage.getItem('token');
+  }
+
   constructor(private surveyService: SurveyService) {}
 
   ngOnInit(): void {
