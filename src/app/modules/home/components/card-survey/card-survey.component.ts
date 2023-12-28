@@ -26,7 +26,7 @@ import { fade } from 'src/app/core/animations/fade.animation';
   selector: 'app-card-survey',
   templateUrl: './card-survey.component.html',
   styleUrls: ['./card-survey.component.scss'],
-  animations: [fade]
+  animations: [fade],
 })
 export class CardSurveyComponent implements OnInit {
   @Input() survey: ISurvey;
@@ -54,7 +54,29 @@ export class CardSurveyComponent implements OnInit {
     const end = moment(new Date(this.survey.expires_at));
     const now = moment(new Date());
     const hours = end.diff(now, 'hours');
-    return `${hours}hrs`;
+    const minutes = end.diff(now, 'minutes');
+    const days = end.diff(now, 'days');
+
+    console.log(hours);
+    
+
+    if (minutes < 59) {
+      return `${minutes}min`;
+    }
+
+    if (minutes > 59 && hours < 24) {
+      return `${hours} hrs`;
+    }
+
+    if (hours < 24) {
+      return `${hours} hrs`;
+    }
+
+    if (hours > 24) {
+      return `${days} dias`;
+    }
+
+    return `${minutes} min`;
   }
 
   isResult: boolean = false;

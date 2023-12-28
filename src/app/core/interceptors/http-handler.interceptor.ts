@@ -20,7 +20,7 @@ export class HttpHandlerInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
     if (!/^(http|https):/i.test(request.url)) {
-      request = request.clone({ url: environment.url + request.url });
+      request = request.clone({ url: environment.api + request.url });
     }
     request = this.setToken(request);
     return next.handle(request).pipe(

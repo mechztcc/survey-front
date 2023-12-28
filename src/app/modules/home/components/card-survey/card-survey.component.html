@@ -24,6 +24,7 @@
         <span class="text-xl mx-3">Sim</span>
         <ng-container *ngIf="isResult && information?.yesPercentage">
           <div
+            [@fade]
             class="rounded-full h-3 bg-green-400 mr-1"
             [ngStyle]="{ width: information.yesPercentage }"
           ></div>
@@ -39,7 +40,7 @@
             [spin]="true"
             class="text-zinc-300"
           ></fa-icon>
-          <span class="text-zinc-600"> Buscando informações... </span>
+          <span class="text-zinc-600" [@fade]> Buscando informações... </span>
         </div>
       </ng-container>
 
@@ -48,11 +49,12 @@
           type="radio"
           (click)="onHandleAlternative('no', $event)"
           [checked]="survey?.userVote?.[0]?.vote == 'no'"
-          [disabled]="isCheked || survey.userVote?.length > 0 "
+          [disabled]="isCheked || survey.userVote?.length > 0"
         />
         <span class="text-xl mx-3">Não</span>
         <ng-container *ngIf="isResult && information?.noPercentage">
           <div
+            [@fade]
             class="rounded-full h-3 bg-red-400 mr-1"
             [ngStyle]="{ width: information.noPercentage }"
           ></div>
@@ -67,12 +69,16 @@
       <h1 class="">Total de votos: {{ survey.votes }}</h1>
       <div class="flex" *ngIf="survey.status == 'opened'">
         <fa-icon [icon]="icons.clock" class="text-green-400"></fa-icon>
-        <h1 class="ml-2 text-green-400 font-semibold">Restam: {{ remainingTime }}</h1>
+        <h1 class="ml-2 text-green-400 font-semibold">
+          Restam: {{ remainingTime }}
+        </h1>
       </div>
 
       <div class="flex" *ngIf="survey.status == 'closed'">
         <fa-icon [icon]="icons.clock" class="text-red-400"></fa-icon>
-        <h1 class="ml-2 text-red-400">Terminou em: {{ survey.updated_at | date:'dd/MM/yyyy hh:mm' }}</h1>
+        <h1 class="ml-2 text-red-400">
+          Terminou em: {{ survey.updated_at | date : "dd/MM/yyyy hh:mm" }}
+        </h1>
       </div>
     </div>
   </div>
