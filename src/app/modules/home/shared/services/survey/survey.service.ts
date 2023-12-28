@@ -11,10 +11,18 @@ export class SurveyService {
   constructor(private http: HttpClient) {}
 
   onTrending(): Observable<ISurvey[]> {
-    return this.http.get<any>(`survey`);
+    return this.http.get<any>(`survey/trending/auth`);
+  }
+
+  onTrendingNoAuth(): Observable<ISurvey[]> {
+    return this.http.get<any>(`survey/trending`);
   }
 
   onInfo(id: number): Observable<ISurveyInformation> {
     return this.http.get<ISurveyInformation>(`survey/${id}/info`);
+  }
+
+  onVote(id: number, vote: string): Observable<any> {
+    return this.http.post<any>(`survey/vote/${id}`, { answer: vote });
   }
 }

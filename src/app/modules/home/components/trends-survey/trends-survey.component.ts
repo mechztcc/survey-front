@@ -14,14 +14,30 @@ export class TrendsSurveyComponent implements OnInit {
   constructor(private surveyService: SurveyService) {}
 
   ngOnInit(): void {
-    this.onFindTrending();
+    if (localStorage.getItem('token')) {
+      this.onFindTrendingAuth();
+    } else {
+      this.onFindTrendingNoAuth();
+    }
   }
 
-  onFindTrending() {
+  onFindTrendingAuth() {
     this.isLoading = true;
-
     this.surveyService
       .onTrending()
+      .subscribe((data) => {
+        this.trending = data;
+        console.log(data);
+      })
+      .add(() => {
+        this.isLoading = false;
+      });
+  }
+
+  onFindTrendingNoAuth() {
+    this.isLoading = true;
+    this.surveyService
+      .onTrendingNoAuth()
       .subscribe((data) => {
         this.trending = data;
       })

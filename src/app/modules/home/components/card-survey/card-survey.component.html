@@ -8,6 +8,7 @@
     >
       <fa-icon [icon]="isResult ? icons.eye : icons.slash"></fa-icon>
     </button>
+
     <h1 class="text-xl font-semibold">
       {{ survey.question }}
     </h1>
@@ -17,10 +18,11 @@
         <input
           type="radio"
           (click)="onHandleAlternative('yes')"
-          [disabled]="isCheked"
+          [checked]="survey.userVote[0]?.vote == 'yes'"
+          [disabled]="isCheked || survey.userVote?.length > 0"
         />
-        <span class="text-xl mx-3">Sim</span>
-        <ng-container *ngIf="isResult">
+        <span class="text-xl mx-3" [class.text-green-400]="survey.userVote[0]?.vote == 'yes'">Sim</span>
+        <ng-container *ngIf="isResult && information?.yesPercentage">
           <div
             class="rounded-full h-3 bg-green-400 mr-1"
             [ngStyle]="{ width: information.yesPercentage }"
@@ -45,10 +47,11 @@
         <input
           type="radio"
           (click)="onHandleAlternative('no')"
-          [disabled]="isCheked"
+          [checked]="survey.userVote[0]?.vote == 'no'"
+          [disabled]="isCheked || survey.userVote?.length > 0"
         />
-        <span class="text-xl mx-3">Não</span>
-        <ng-container *ngIf="isResult">
+        <span class="text-xl mx-3" [class.text-red-400]="survey.userVote[0]?.vote == 'no'">Não</span>
+        <ng-container *ngIf="isResult && information?.noPercentage">
           <div
             class="rounded-full h-3 bg-red-400 mr-1"
             [ngStyle]="{ width: information.noPercentage }"
