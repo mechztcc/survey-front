@@ -19,6 +19,7 @@ import {
 import { SurveyService } from '../../shared/services/survey/survey.service';
 import { ISurveyInformation } from '../../shared/types/survey-information.interface';
 import { ActivatedRoute } from '@angular/router';
+import { AlertService } from 'src/app/core/services/alert-service/alert.service';
 
 @Component({
   selector: 'app-card-survey',
@@ -60,10 +61,15 @@ export class CardSurveyComponent implements OnInit {
 
   information: ISurveyInformation;
 
+  get hasSession() {
+    return localStorage.getItem('token');
+  }
+
   constructor(
     private fb: FormBuilder,
     private surveyService: SurveyService,
-    private routes: ActivatedRoute
+    private routes: ActivatedRoute,
+    private alertService: AlertService
   ) {}
 
   ngOnInit(): void {
@@ -76,8 +82,14 @@ export class CardSurveyComponent implements OnInit {
     });
   }
 
-  onHandleAlternative(value: 'yes' | 'no') {
+  onHandleAlternative(value: 'yes' | 'no', event: MouseEvent) {
+    if (!this.hasSession) {
+      this.alertService.onRequireLogin();
+      event.preventDefault();
+      return;
+    }
     if (this.formControls['value'].touched) {
+      event.preventDefault();
       return;
     }
 

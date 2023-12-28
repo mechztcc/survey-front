@@ -6,7 +6,7 @@ import { Subscription, timer } from 'rxjs';
 })
 export class AlertService {
   isHiden: boolean = true;
-  type: 'error' | 'success' = 'success';
+  type: 'error' | 'success' | 'login' = 'success';
   title: string;
   description: string;
 
@@ -34,6 +34,13 @@ export class AlertService {
     this.timer$ = timer(3000).subscribe(() => {
       this.isHiden = true;
     });
+  }
+
+  onRequireLogin() {
+    this.isHiden = false;
+    this.title = 'Ação necessária';
+    this.type = 'login';
+    this.description = 'Para realizar votação é precisa estar logado!';
   }
 
   onClose() {

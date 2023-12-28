@@ -17,11 +17,11 @@
       <div class="flex items-center mt-3">
         <input
           type="radio"
-          (click)="onHandleAlternative('yes')"
-          [checked]="survey.userVote[0]?.vote == 'yes'"
+          (click)="onHandleAlternative('yes', $event)"
+          [checked]="survey?.userVote?.[0]?.vote == 'yes'"
           [disabled]="isCheked || survey.userVote?.length > 0"
         />
-        <span class="text-xl mx-3" [class.text-green-400]="survey.userVote[0]?.vote == 'yes'">Sim</span>
+        <span class="text-xl mx-3">Sim</span>
         <ng-container *ngIf="isResult && information?.yesPercentage">
           <div
             class="rounded-full h-3 bg-green-400 mr-1"
@@ -46,11 +46,11 @@
       <div class="flex items-center">
         <input
           type="radio"
-          (click)="onHandleAlternative('no')"
-          [checked]="survey.userVote[0]?.vote == 'no'"
-          [disabled]="isCheked || survey.userVote?.length > 0"
+          (click)="onHandleAlternative('no', $event)"
+          [checked]="survey?.userVote?.[0]?.vote == 'no'"
+          [disabled]="isCheked || survey.userVote?.length > 0 "
         />
-        <span class="text-xl mx-3" [class.text-red-400]="survey.userVote[0]?.vote == 'no'">Não</span>
+        <span class="text-xl mx-3">Não</span>
         <ng-container *ngIf="isResult && information?.noPercentage">
           <div
             class="rounded-full h-3 bg-red-400 mr-1"
