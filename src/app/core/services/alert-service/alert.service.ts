@@ -15,7 +15,6 @@ export class AlertService {
   constructor() {}
 
   onSuccess(description: string) {
-    this.isHiden = true;
     this.isHiden = false;
     this.title = 'Sucesso';
     this.type = 'success';
@@ -38,7 +37,6 @@ export class AlertService {
   }
 
   onRequireLogin() {
-    this.isHiden = true;
     this.isHiden = false;
     this.title = 'Ação necessária';
     this.type = 'login';

@@ -10,6 +10,7 @@ import {
 import { Subscription, timer } from 'rxjs';
 import { FormsValidatorService } from 'src/app/core/services/forms-validator/forms-validator.service';
 import { AuthService } from '../../shared/services/auth.service';
+import { AlertService } from 'src/app/core/services/alert-service/alert.service';
 
 @Component({
   selector: 'app-form-create-account',
@@ -37,7 +38,8 @@ export class FormCreateAccountComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     public formsValidator: FormsValidatorService,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private alertService: AlertService
   ) {}
 
   ngOnInit(): void {
@@ -78,12 +80,13 @@ export class FormCreateAccountComponent implements OnInit, OnDestroy {
       password: this.formControls['password'].value,
       name: this.formControls['name'].value,
       document: this.formControls['document'].value,
-      profile: this.formControls['profile'].value
+      profile: this.formControls['profile'].value,
     };
 
     this.authService
       .onCreateAccount(payload)
       .subscribe((data) => {
+        this.alertService.onSuccess('Conta criada com sucesso!')
         this.timer$ = timer(2000).subscribe(() => {
           this.router.navigate(['/auth/login']);
         });
