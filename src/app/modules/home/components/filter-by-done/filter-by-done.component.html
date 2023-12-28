@@ -1,18 +1,15 @@
-<div class="bg-zinc-50 p-5 rounded-lg my-5">
-  <h1 class="text-xl font-semibold mb-3">Status</h1>
+<form [formGroup]="form">
+  <div class="bg-zinc-50 p-5 rounded-lg my-5">
+    <h1 class="text-xl font-semibold mb-3">Status</h1>
 
-  <div class="flex">
-    <input type="radio" />
-    <span class="ml-2">Em andamento</span>
-  </div>
+    <div class="flex">
+      <input type="radio" [checked]="opened" (click)="onHandle('opened')" />
+      <span class="ml-2">Em andamento</span>
+    </div>
 
-  <div class="flex">
-    <input type="radio" />
-    <span class="ml-2">Concluídas</span>
+    <div class="flex">
+      <input type="radio" [checked]="closed"  (click)="onHandle('closed')" />
+      <span class="ml-2">Concluídas</span>
+    </div>
   </div>
-
-  <div class="flex">
-    <input type="radio" />
-    <span class="ml-2">Em alta</span>
-  </div>
-</div>
+</form>

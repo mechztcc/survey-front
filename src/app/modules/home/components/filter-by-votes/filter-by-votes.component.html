@@ -1,23 +1,38 @@
-<div class="bg-zinc-50 p-5 rounded-lg my-5">
-  <h1 class="text-xl font-semibold">Total de Votos</h1>
+<form [formGroup]="form">
+  <div class="bg-zinc-50 p-5 rounded-lg my-5">
+    <h1 class="text-xl font-semibold">Total de Votos</h1>
 
-  <div class="flex">
-    <div class="flex flex-col mt-3">
-      <span>Min</span>
-      <div
-        class="flex border rounded-full bg-white hover:border-purple-400 "
-      >
-        <input type="text" class="w-full p-3 px-5 rounded-full outline-none" />
+    <div class="flex mb-4">
+      <div class="flex flex-col mt-3">
+        <span>Min</span>
+        <div class="flex border rounded-full bg-white hover:border-purple-400">
+          <input
+            type="number"
+            step="1"
+            min="0"
+            class="w-full p-3 px-5 rounded-full outline-none"
+            formControlName="min"
+          />
+        </div>
+      </div>
+
+      <div class="flex flex-col mt-3 ml-3">
+        <span>Max</span>
+        <div class="flex border rounded-full bg-zinc-200">
+          <input
+            type="number"
+            step="1"
+            min="0"
+            class="w-full p-3 px-5 rounded-full outline-none cursor-not-allowed"
+            formControlName="max"
+          />
+        </div>
       </div>
     </div>
-
-    <div class="flex flex-col mt-3 ml-3">
-      <span>Max</span>
-      <div
-        class="flex border rounded-full bg-white hover:border-purple-400"
-      >
-        <input type="text" class="w-full p-3 px-5 rounded-full outline-none" />
-      </div>
-    </div>
+    <app-simple-button
+      [label]="'Buscar'"
+      [full]="true"
+      (click)="onSearch()"
+    ></app-simple-button>
   </div>
-</div>
+</form>

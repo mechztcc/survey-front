@@ -1,28 +1,33 @@
 <div class="bg-zinc-50 p-5 rounded-lg my-5">
   <h1 class="text-xl font-semibold mb-3">Configurações</h1>
 
-
   <div class="flex my-3">
-    <button class="border px-3 py-2 rounded-lg  hover:bg-purple-400 hover:text-white">
+    <button
+      class="border px-3 py-2 rounded-lg hover:bg-purple-400 hover:text-white"
+    >
       <fa-icon [icon]="icons.horizontal" class=""></fa-icon>
     </button>
 
-    <button class="border px-3 py-2 rounded-lg  hover:bg-purple-400 hover:text-white mx-1">
-        <fa-icon [icon]="icons.vertical" class=""></fa-icon>
+    <button
+      class="border px-3 py-2 rounded-lg hover:bg-purple-400 hover:text-white mx-1"
+    >
+      <fa-icon [icon]="icons.vertical" class=""></fa-icon>
     </button>
 
-    <button class="border px-3 py-2 rounded-lg  hover:bg-purple-400 hover:text-white mx-1">
-        <fa-icon [icon]="icons.clear" class=""></fa-icon>
+    <button
+      class="border px-3 py-2 rounded-lg hover:bg-purple-400 hover:text-white mx-1"
+      (click)="onClear()"
+    >
+      <fa-icon [icon]="icons.clear" class=""></fa-icon>
     </button>
   </div>
 
   <select
+    (change)="onOrder($event.target['value'])"
     class="border rounded-full bg-white hover:border-purple-400 p-3 w-full"
   >
-    <option value="0" disabled selected>Ordernar</option>
-    <option value="Antigos">Mais antigos</option>
-    <option value="Recente">Mais recentes</option>
+    <option value="0" disabled>Ordernar</option>
+    <option value="ASC" [selected]="isAsc">Mais antigos</option>
+    <option value="DESC" [selected]="isDesc">Mais recentes</option>
   </select>
-
-  
 </div>

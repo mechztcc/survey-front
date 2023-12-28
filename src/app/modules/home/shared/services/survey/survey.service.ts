@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ISurvey } from '../../types/survey.interface';
 import { ISurveyInformation } from '../../types/survey-information.interface';
+import { ISearchSurveyParams } from '../../types/search-survey-params.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -24,5 +25,11 @@ export class SurveyService {
 
   onVote(id: number, vote: string): Observable<any> {
     return this.http.post<any>(`survey/vote/${id}`, { answer: vote });
+  }
+
+  onFindWithFilters(params: ISearchSurveyParams): Observable<ISurvey[]> {
+    return this.http.get<any>(
+      `survey/list?order=${params.order}&page=${params.page}&status=${params.status}&votes=${params.vote}`
+    );
   }
 }
