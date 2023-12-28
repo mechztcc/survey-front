@@ -87,6 +87,15 @@
     Senha inválida
   </small>
 
+  <select
+    formControlName="profile"
+    class="border rounded-full bg-white hover:border-purple-400 p-3 w-full mb-5 mt-5"
+  >
+    <option value="0" disabled>Perfil:</option>
+    <option value="admin">Quero criar enquetes</option>
+    <option value="guest">Quero apenas participar de votações</option>
+  </select>
+
   <app-simple-button
     [label]="'CRIAR CONTA'"
     [full]="true"

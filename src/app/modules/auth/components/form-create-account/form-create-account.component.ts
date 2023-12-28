@@ -57,6 +57,7 @@ export class FormCreateAccountComponent implements OnInit, OnDestroy {
         Validators.compose([Validators.required, Validators.minLength(10)]),
       ],
       email: ['', Validators.compose([Validators.required, Validators.email])],
+      profile: ['admin', Validators.required],
       document: ['', Validators.required],
       password: [
         '',
@@ -77,6 +78,7 @@ export class FormCreateAccountComponent implements OnInit, OnDestroy {
       password: this.formControls['password'].value,
       name: this.formControls['name'].value,
       document: this.formControls['document'].value,
+      profile: this.formControls['profile'].value
     };
 
     this.authService

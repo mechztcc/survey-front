@@ -42,7 +42,7 @@ export class AlertService {
     this.isHiden = false;
     this.title = 'Ação necessária';
     this.type = 'login';
-    this.description = 'Para realizar esta ação é precisa estar logado!';
+    this.description = 'Para realizar esta ação é preciso estar logado(a)!';
   }
 
   onClose() {
