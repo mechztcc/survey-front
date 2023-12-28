@@ -19,6 +19,7 @@ import { FilterByVotesComponent } from './components/filter-by-votes/filter-by-v
 import { FilterByDoneComponent } from './components/filter-by-done/filter-by-done.component';
 import { FilterBySettingsComponent } from './components/filter-by-settings/filter-by-settings.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CreateSurveyComponent } from './components/create-survey/create-survey.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FilterByVotesComponent,
     FilterByDoneComponent,
     FilterBySettingsComponent,
+    CreateSurveyComponent,
   ],
   imports: [
     CommonModule,

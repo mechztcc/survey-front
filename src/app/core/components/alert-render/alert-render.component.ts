@@ -5,6 +5,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faCircleCheck, faCircleExclamation, faClose } from '@fortawesome/free-solid-svg-icons';
 import { NgIf } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { fade } from '../../animations/fade.animation';
 
 @Component({
   selector: 'app-alert-render',
@@ -13,6 +14,7 @@ import { RouterModule } from '@angular/router';
   standalone: true,
   providers: [],
   imports: [SimpleButtonComponent, FontAwesomeModule, NgIf, RouterModule],
+  animations: [fade]
 })
 export class AlertRenderComponent {
   icons = {

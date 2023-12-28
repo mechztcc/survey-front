@@ -20,11 +20,13 @@ import { SurveyService } from '../../shared/services/survey/survey.service';
 import { ISurveyInformation } from '../../shared/types/survey-information.interface';
 import { ActivatedRoute } from '@angular/router';
 import { AlertService } from 'src/app/core/services/alert-service/alert.service';
+import { fade } from 'src/app/core/animations/fade.animation';
 
 @Component({
   selector: 'app-card-survey',
   templateUrl: './card-survey.component.html',
   styleUrls: ['./card-survey.component.scss'],
+  animations: [fade]
 })
 export class CardSurveyComponent implements OnInit {
   @Input() survey: ISurvey;
