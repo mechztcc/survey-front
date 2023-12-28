@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { SurveyService } from '../../shared/services/survey/survey.service';
+import { addMultipleSurveys } from '../../shared/stores/search.actions';
+import * as selectors from '../../shared/stores/search.selectors';
+import { ISurvey } from '../../shared/types/survey.interface';
+import { finalize, tap } from 'rxjs';
 
 @Component({
   selector: 'app-search-page',
@@ -8,9 +13,23 @@ import { SurveyService } from '../../shared/services/survey/survey.service';
   styleUrls: ['./search-page.component.scss'],
 })
 export class SearchPageComponent implements OnInit {
+  isLoading: boolean = false;
+  surveys: ISurvey[] = [];
+
+  config = {
+    totalItems: 0,
+    totalPages: [],
+    prevPage: null,
+    nextPage: null,
+  };
+
+  searchList$ = this.store.select(selectors.selectAllSurveys);
+
   constructor(
     public routes: ActivatedRoute,
-    private surveyService: SurveyService
+    private surveyService: SurveyService,
+    private store: Store<ISurvey[]>,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -33,6 +52,31 @@ export class SearchPageComponent implements OnInit {
   }
 
   onFind(params: any) {
-    this.surveyService.onFindWithFilters(params).subscribe(console.log);
+    this.isLoading = true;
+    this.surveyService
+      .onFindWithFilters(params)
+      .subscribe((response) => {
+        this.config = {
+          nextPage: response['nextPage'],
+          prevPage: response['prevPage'],
+          totalItems: response['totalItems'],
+          totalPages: [],
+        };
+        for (let index = 0; index < response['totalPages']; index++) {
+          this.config.totalPages.push(index + 1);
+        }
+        this.store.dispatch(addMultipleSurveys({ payload: response['data'] }));
+      })
+      .add(() => {
+        this.isLoading = false;
+      });
+  }
+
+  onSearch(page: number) {
+    this.router.navigate([], {
+      relativeTo: this.routes,
+      queryParams: { page },
+      queryParamsHandling: 'merge',
+    });
   }
 }

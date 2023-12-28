@@ -55,6 +55,13 @@ export class FilterBySettingsComponent implements OnInit {
   initForm() {
     this.form = this.fb.group({
       order: ['ASC', Validators.required],
+      take: [10, Validators.required],
+    });
+
+    this.routes.queryParams.subscribe((params: ParamMap) => {
+      const queryParams = { ...params };
+      this.formControls['take'].setValue(queryParams['take'] ?? 0);
+      this.formControls['order'].setValue(queryParams['order'] ?? 'ASC');
     });
   }
 
@@ -66,6 +73,14 @@ export class FilterBySettingsComponent implements OnInit {
     this.router.navigate([], {
       relativeTo: this.routes,
       queryParams: { order },
+      queryParamsHandling: 'merge',
+    });
+  }
+
+  onTake() {
+    this.router.navigate([], {
+      relativeTo: this.routes,
+      queryParams: { take: this.formControls['take'].value },
       queryParamsHandling: 'merge',
     });
   }

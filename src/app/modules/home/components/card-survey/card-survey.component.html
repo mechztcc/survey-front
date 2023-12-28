@@ -65,9 +65,14 @@
 
     <div class="flex justify-between">
       <h1 class="">Total de votos: {{ survey.votes }}</h1>
-      <div class="flex">
-        <fa-icon [icon]="icons.clock"></fa-icon>
-        <h1 class="ml-2">Restam: {{ remainingTime }}</h1>
+      <div class="flex" *ngIf="survey.status == 'opened'">
+        <fa-icon [icon]="icons.clock" class="text-green-400"></fa-icon>
+        <h1 class="ml-2 text-green-400 font-semibold">Restam: {{ remainingTime }}</h1>
+      </div>
+
+      <div class="flex" *ngIf="survey.status == 'closed'">
+        <fa-icon [icon]="icons.clock" class="text-red-400"></fa-icon>
+        <h1 class="ml-2 text-red-400">Terminou em: {{ survey.updated_at | date:'dd/MM/yyyy hh:mm' }}</h1>
       </div>
     </div>
   </div>

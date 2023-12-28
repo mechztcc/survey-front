@@ -29,7 +29,7 @@ export class SurveyService {
 
   onFindWithFilters(params: ISearchSurveyParams): Observable<ISurvey[]> {
     return this.http.get<any>(
-      `survey/list?order=${params.order}&page=${params.page}&status=${params.status}&votes=${params.vote}`
+      `survey/list?order=${params.order}&page=${params.page}&status=${params.status}&votes=${params.vote}&take=${params.take}`
     );
   }
 }

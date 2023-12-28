@@ -12,6 +12,8 @@ import { BadgeComponent } from './core/components/badge/badge.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HttpHandlerInterceptor } from './core/interceptors/http-handler.interceptor';
 import { AlertRenderComponent } from './core/components/alert-render/alert-render.component';
+import { StoreModule } from '@ngrx/store';
+import { searchReducer } from './modules/home/shared/stores/search.reducer';
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,6 +28,7 @@ import { AlertRenderComponent } from './core/components/alert-render/alert-rende
     BadgeComponent,
     HttpClientModule,
     AlertRenderComponent,
+    StoreModule.forRoot({ search: searchReducer }, {}),
   ],
   providers: [
     {
