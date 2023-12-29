@@ -57,9 +57,6 @@ export class CardSurveyComponent implements OnInit {
     const minutes = end.diff(now, 'minutes');
     const days = end.diff(now, 'days');
 
-    console.log(hours);
-    
-
     if (minutes < 59) {
       return `${minutes}min`;
     }
@@ -122,7 +119,7 @@ export class CardSurveyComponent implements OnInit {
     this.surveyService
       .onVote(this.survey.id, value)
       .subscribe((data) => {
-        console.log(data);
+        this.survey.votes++;
       })
       .add(() => {
         this.isVoting = false;
