@@ -30,8 +30,14 @@ export class HttpHandlerInterceptor implements HttpInterceptor {
       catchError((response: HttpErrorResponse) => {
         scrollTo(0, 0);
         console.log(response.error);
-        
-        this.alertService.onError(response.error['message'] ?? 'Falha na operação')
+
+        if (response.error.message == 'Provided user has not found.') {
+          this.router.navigate(['/auth/login']);
+        }
+
+        this.alertService.onError(
+          response.error['message'] ?? 'Falha na operação'
+        );
         return throwError(() => new Error());
       })
     );
