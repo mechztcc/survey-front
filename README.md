@@ -1,6 +1,7 @@
 # SURVEY API
 
-This API was developed with the purpose of demonstrating backend knowledge using Nest Js.
+This Sistem was developed with the purpose of demonstrating frontend knowledge using Angular.
+To have access to all functionalities of this system you will need use this provided api https://github.com/mechztcc/survey-api
 
 ## Table of Contents
 
