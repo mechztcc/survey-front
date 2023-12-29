@@ -15,16 +15,20 @@
       ></app-card-survey>
     </div>
   </ng-container>
-
-    <div class="col-span-1 md:col-span-4">
-      <div class="flex flex-wrap justify-end items-center">
-        <button
-          (click)="onSearch(item)"
-          class="border mx-1 py-1 px-3 rounded-lg hover:shadow-lg font-semibold"
-          *ngFor="let item of config.totalPages"
-        >
-          {{ item }}
-        </button>
-      </div>
+  <ng-container *ngIf="(searchList$ | async).length == 0">
+    <div class="col-span-1 md:col-span-3 mt-5 text-center">
+      <app-not-found></app-not-found>
     </div>
+  </ng-container>
+  <div class="col-span-1 md:col-span-4">
+    <div class="flex flex-wrap justify-end items-center">
+      <button
+        (click)="onSearch(item)"
+        class="border mx-1 py-1 px-3 rounded-lg hover:shadow-lg font-semibold"
+        *ngFor="let item of config.totalPages"
+      >
+        {{ item }}
+      </button>
+    </div>
+  </div>
 </div>

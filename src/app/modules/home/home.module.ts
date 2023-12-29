@@ -20,6 +20,7 @@ import { FilterByDoneComponent } from './components/filter-by-done/filter-by-don
 import { FilterBySettingsComponent } from './components/filter-by-settings/filter-by-settings.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateSurveyComponent } from './components/create-survey/create-survey.component';
+import { NotFoundComponent } from 'src/app/core/components/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { CreateSurveyComponent } from './components/create-survey/create-survey.
     BadgeComponent,
     FormsModule,
     ReactiveFormsModule,
+    NotFoundComponent,
   ],
 })
 export class HomeModule {}
