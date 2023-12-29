@@ -1,27 +1,40 @@
-# SurveyJornalFront
+# SURVEY API
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.0.
+This API was developed with the purpose of demonstrating backend knowledge using Nest Js.
 
-## Development server
+## Table of Contents
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Installation](#installation)
+- [How to Use](#how-to-use)
 
-## Code scaffolding
+## About
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+This project allows the user to register, vote, and collect poll results. Only registered users can vote.
 
-## Build
+## Features
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- CREATE ACCESS
+- LOG INTO THE SYSTEM
+- CREATE POLL
+- VOTE POLL
+- CHECK POLL RESULTS
+- CLOSE SURVEYS AUTOMATICALLY
 
-## Running unit tests
+## Technologies Used
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- ANGULAR 16.0.2 TAILWINDCSS
 
-## Running end-to-end tests
+## Installation
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+[LOCAL] To run the project, you will need to install
+``npm install -g @angular/cli@16.0.2`` 
+, fill in the .enviroments [prod, staging, default] file.
 
-## Further help
+[DOCKER-COMPOSE RECOMMENDED] To run the project, you will need to have docker and docker-compose installed on your machine. After this, fill in the .env file. I have provided an example file in the root of the project. Then just run
+``docker-compose up``
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## How to Use
+
+Once the project is running, you can check your localhost:4200
