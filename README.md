@@ -1,4 +1,4 @@
-# SURVEY API
+# SURVEY FRONT
 
 This Sistem was developed with the purpose of demonstrating frontend knowledge using Angular.
 To have access to all functionalities of this system you will need use this provided api https://github.com/mechztcc/survey-api
@@ -33,7 +33,7 @@ This project allows the user to register, vote, and collect poll results. Only r
 ``npm install -g @angular/cli@16.0.2`` 
 , fill in the .enviroments [prod, staging, default] file.
 
-[DOCKER-COMPOSE RECOMMENDED] To run the project, you will need to have docker and docker-compose installed on your machine. After this, fill in the .env file. I have provided an example file in the root of the project. Then just run
+[DOCKER-COMPOSE RECOMMENDED] To run the project, you will need to have docker and docker-compose installed on your machine, Then just run
 ``docker-compose up``
 
 ## How to Use
